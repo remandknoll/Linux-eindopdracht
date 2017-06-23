@@ -1,0 +1,5 @@
+#install syslog-ng
+apt-get install syslog-ng
+
+#tail on de logs - dus loggen
+sudo tail -f /var/log/syslog
