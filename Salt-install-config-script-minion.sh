@@ -1,3 +1,4 @@
+#COPYRIGHT REMAND KNOL - 339249
 #root maken als nodig
 sudo -i
 
