@@ -1,6 +1,6 @@
 #COPYRIGHT REMAND KNOL - 339249
 #root maken als nodig
-sudo -i
+#sudo -i
 
 #install salt-master + confirm alles
 echo "*********** INSTALLING SALT-MASTER BITCHES ***********"

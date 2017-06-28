@@ -1,6 +1,7 @@
+#!bin/bash
 #COPYRIGHT REMAND KNOL - 339249
 #root maken als nodig
-sudo -i
+#sudo -i
 
 #install salt-minion + confirm alles
 echo "*********** INSTALLING SALT-MINION BITCHES ***********"
