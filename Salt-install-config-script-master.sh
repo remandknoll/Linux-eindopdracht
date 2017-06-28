@@ -13,6 +13,6 @@ sudo apt-get install salt-minion -y
 #CONFIG
 #Configure master file
 echo "*********** Effe config goed doen, ok. ***********"
-sed -i 's/#interface: 0.0.0.0/interface: 10.0.0.1/g' /etc/salt/master
-
+sed -i 's/#interface: 0.0.0.0/interface: 10.5.0.157/g' /etc/salt/master
+salt-key --accept-all -y
 
