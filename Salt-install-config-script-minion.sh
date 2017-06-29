@@ -1,5 +1,6 @@
 #!bin/bash
 #COPYRIGHT REMAND KNOL - 339249
+#Configuratie aan de hand van: https://www.balabit.com/documents/syslog-ng-ose-latest-guides/en/syslog-ng-ose-guide-admin/html/configure-servers.html
 #root maken als nodig
 sudo -i
 
