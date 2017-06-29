@@ -1,4 +1,3 @@
 #read script from git
-bash <(curl -s https://raw.githubusercontent.com/remandknoll/Linux-eindopdracht/master/Minion-syslog-config.sh)
 
-salt 'minion1' cmd.run 'https://raw.githubusercontent.com/remandknoll/Linux-eindopdracht/master/Minion-syslog-config.sh'
+salt 'minion1' cmd.run "wget -O - https://raw.githubusercontent.com/remandknoll/Linux-eindopdracht/master/Minion-syslog-config.sh | bash"
