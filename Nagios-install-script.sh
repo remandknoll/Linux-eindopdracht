@@ -4,6 +4,7 @@
 #root maken
 sudo -i
 
+sudo apt-get install -y autoconf gcc libc6 make wget unzip apache2 php libapache2-mod-php7.0 libgd2-xpm-dev
 #source downloaden
 cd /tmp
 wget -O nagioscore.tar.gz https://github.com/NagiosEnterprises/nagioscore/archive/nagios-4.3.2.tar.gz
@@ -11,7 +12,7 @@ tar xzf nagioscore.tar.gz
 
 #compilen van gedownloade source
 cd /tmp/nagioscore-nagios-4.3.2/
-sudo ./configure --with-httpd-conf=/etc/apache2/sites-enabled
+#sudo ./configure --with-httpd-conf=/etc/apache2/sites-enabled
 make all
 
 #usermaken en binary
