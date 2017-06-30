@@ -1,10 +1,10 @@
 #!bin/bash
 #COPYRIGHT REMAND KNOL - 339249
 #install met behulp van handleiding: https://support.nagios.com/kb/article/nagios-core-installing-nagios-core-from-source.html#Ubuntu
-#root maken
-sudo -i
 
+sudo apt-get update
 sudo apt-get install -y autoconf gcc libc6 make wget unzip apache2 php libapache2-mod-php7.0 libgd2-xpm-dev
+
 #source downloaden
 cd /tmp
 wget -O nagioscore.tar.gz https://github.com/NagiosEnterprises/nagioscore/archive/nagios-4.3.2.tar.gz
