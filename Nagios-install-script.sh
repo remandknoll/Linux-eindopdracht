@@ -84,7 +84,7 @@ define service{
         service_description             HTTP
         check_command                   check_http
         notifications_enabled           0
-        }" >> /usr/local/nagios/etc/servers/minion1_host.cfg
+        }" >> /usr/local/nagios/etc/objects/minion1_host.cfg
 
 #config aanpassen zodat admin rechten heb
 #sed -i 's/authorized_for_configuration_information=nagiosadmin/authorized_for_configuration_information=*/g' /usr/local/nagios/etc/cgi.cfg
@@ -92,7 +92,7 @@ define service{
 #sed -i 's/authorized_for_system_commands=nagiosadmin/authorized_for_system_commands=*/g' /usr/local/nagios/etc/cgi.cfg
 #sed -i 's/authorized_for_all_hosts=nagiosadmin/authorized_for_all_hosts=*/g' /usr/local/nagios/etc/cgi.cfg
 #sed -i 's/authorized_for_all_services=nagiosadmin/authorized_for_all_services=*/g' /usr/local/nagios/etc/cgi.cfg
-echo "cfg_file=/usr/local/nagios/etc/servers/minion1_host.cfg" >> /usr/local/nagios/etc/nagios.cfg
+echo "cfg_file=/usr/local/nagios/etc/objects/minion1_host.cfg" >> /usr/local/nagios/etc/nagios.cfg
 #nog ff restarten
 service apache2 restart
 service nagios restart
