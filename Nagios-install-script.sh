@@ -12,7 +12,7 @@ tar xzf nagioscore.tar.gz
 
 #compilen van gedownloade source
 cd /tmp/nagioscore-nagios-4.3.2/
-#sudo ./configure --with-httpd-conf=/etc/apache2/sites-enabled
+sudo ./configure --with-httpd-conf=/etc/apache2/sites-enabled
 make all
 
 #usermaken en binary
