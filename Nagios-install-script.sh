@@ -45,95 +45,53 @@ service nagios start
 
 #add host minion's in config
 cd
-mkdir /usr/local/nagios/etc/servers/
-cd /usr/local/nagios/etc/servers/
-touch ubuntu_host.cfg
-echo "# Ubuntu Host configuration file
+touch /usr/local/nagios/etc/objects/minion1_host.cfg
+echo "# Define a host for the local machine
 
-define host {
-        use                          linux-server
-        host_name                    minion1
-        alias                        Ubuntu Host
-        address                      145.37.234.138
-        register                     1
-}
+define host{
+        use                     linux-server            ; Name of host template to use
+                                                        ; This host definition will inherit all variables that are defined
+                                                        ; in (or inherited by) the linux-server host template definition.
+        host_name               ubuntu_minion1
+        alias                   google.com
+        address                 145.37.234.138
+        }
 
-define service {
-      host_name                       minion1
-      service_description             PING
-      check_command                   check_ping!100.0,20%!500.0,60%
-      max_check_attempts              2
-      check_interval                  2
-      retry_interval                  2
-      check_period                    24x7
-      check_freshness                 1
-      contact_groups                  admins
-      notification_interval           2
-      notification_period             24x7
-      notifications_enabled           1
-      register                        1
-}
+###############################################################################
+###############################################################################
+#
+# SERVICE DEFINITIONS
+#
+###############################################################################
+###############################################################################
 
-define service {
-      host_name                       minion1
-      service_description             Check Users
-      check_command           check_local_users!20!50
-      max_check_attempts              2
-      check_interval                  2
-      retry_interval                  2
-      check_period                    24x7
-      check_freshness                 1
-      contact_groups                  admins
-      notification_interval           2
-      notification_period             24x7
-      notifications_enabled           1
-      register                        1
-}
+# Define a service to ping the local machine
 
-define service {
-      host_name                       minion1
-      service_description             Local Disk
-      check_command                   check_local_disk!20%!10%!/
-      max_check_attempts              2
-      check_interval                  2
-      retry_interval                  2
-      check_period                    24x7
-      check_freshness                 1
-      contact_groups                  admins
-      notification_interval           2
-      notification_period             24x7
-      notifications_enabled           1
-      register                        1
-}
+define service{
+        use                             generic-service         ; Name of service template to use
+        host_name                       ubuntu_minion1
+        service_description             PING
+        check_command                   check_ping!100.0,20%!500.0,60%
+        }
 
-define service {
-      host_name                       minion1
-      service_description             Check SSH
-      check_command                   check_ssh
-      max_check_attempts              2
-      check_interval                  2
-      retry_interval                  2
-      check_period                    24x7
-      check_freshness                 1
-      contact_groups                  admins
-      notification_interval           2
-      notification_period             24x7
-      notifications_enabled           1
-      register                        1
-}
+# Define a service to check HTTP on the local machine.
+# Disable notifications for this service by default, as not all users may have HTTP enabled.
 
-define service {
-      host_name                       minion1
-      service_description             Total Process
-      check_command                   check_local_procs!250!400!RSZDT
-      max_check_attempts              2
-      check_interval                  2
-      retry_interval                  2
-      check_period                    24x7
-      check_freshness                 1
-      contact_groups                  admins
-      notification_interval           2
-      notification_period             24x7
-      notifications_enabled           1
-      register                        1
-}" >> /usr/local/nagios/etc/servers/ubuntu_host.cfg
+define service{
+        use                             generic-service         ; Name of service template to use
+        host_name                       ubuntu_minion1
+        service_description             HTTP
+        check_command                   check_http
+        notifications_enabled           0
+        }" >> /usr/local/nagios/etc/servers/minion1_host.cfg
+
+#config aanpassen zodat admin rechten heb
+#sed -i 's/authorized_for_configuration_information=nagiosadmin/authorized_for_configuration_information=*/g' /usr/local/nagios/etc/cgi.cfg
+#sed -i 's/authorized_for_system_information=nagiosadmin/authorized_for_system_information=*/g' /usr/local/nagios/etc/cgi.cfg
+#sed -i 's/authorized_for_system_commands=nagiosadmin/authorized_for_system_commands=*/g' /usr/local/nagios/etc/cgi.cfg
+#sed -i 's/authorized_for_all_hosts=nagiosadmin/authorized_for_all_hosts=*/g' /usr/local/nagios/etc/cgi.cfg
+#sed -i 's/authorized_for_all_services=nagiosadmin/authorized_for_all_services=*/g' /usr/local/nagios/etc/cgi.cfg
+echo "cfg_file=/usr/local/nagios/etc/servers/minion1_host.cfg" >> /usr/local/nagios/etc/nagios.cfg
+#nog ff restarten
+service apache2 restart
+service nagios restart
