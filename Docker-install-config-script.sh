@@ -2,7 +2,7 @@
 #COPYRIGHT REMAND KNOL - 339249
 #configuratie aan de hand van opletten tijdens docker les 
 #root maken als nodig
-sudo -i
+#sudo -i
 
 #update apt-get en install docker
 sudo apt-get install -y docker-ce

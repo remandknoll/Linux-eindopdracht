@@ -2,7 +2,7 @@
 #COPYRIGHT REMAND KNOL - 339249
 #install met behulp van handleiding: https://www.howtoforge.com/tutorial/ubuntu-nagios/
 #root maken
-sudo -i
+#sudo -i
 
 #install nagios plugin
 apt-get install nagios-nrpe-server nagios-plugins -y
